@@ -1,0 +1,5 @@
+# Runtime + test dependencies for the PromptOps release quality gate.
+# Kept intentionally minimal — everything else uses the Python standard library.
+
+PyYAML>=6.0      # parse prompt metadata (prompt_metadata/*.yaml)
+pytest>=7.4      # unit tests for validators / scorecard / quality gate
