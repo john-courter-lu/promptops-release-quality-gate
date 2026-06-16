@@ -1,0 +1,33 @@
+# Spec for the compliance_review prompt.
+# compliance_sensitive: true -> this prompt ALWAYS routes to required human review,
+# regardless of how clean the automated checks are.
+prompt_id: compliance_review
+title: Compliance Review Summary (synthetic)
+description: >
+  Produces a neutral, source-grounded summary of a synthetic internal policy
+  document to support a human reviewer. Demonstrates both a hard FAIL (the v1
+  prompt drops required sections and asserts a compliance conclusion) and the
+  always-on human-review routing.
+
+compliance_sensitive: true
+require_source_grounding: true
+
+required_sections:
+  - Review Scope
+  - Observations
+  - Items Requiring Human Review
+  - Source References
+  - Disclaimer
+
+# The tool must never assert a compliance determination itself (FAIL).
+banned_phrases:
+  - this is fully compliant
+  - no compliance risk
+  - legally binding
+  - this constitutes legal advice
+
+unsupported_certainty_terms:
+  - guaranteed compliant
+  - zero risk
+  - definitely compliant
+  - no violations

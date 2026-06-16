@@ -1,0 +1,26 @@
+# Spec for the advisory_notes_summary prompt.
+prompt_id: advisory_notes_summary
+title: Advisory Notes Summary (synthetic)
+description: >
+  Condenses synthetic advisory meeting notes into a brief summary.
+  Demonstrates the source-grounding (WARNING) path: the v1 prompt invites the
+  model to add un-sourced "background", raising hallucination risk.
+
+compliance_sensitive: false
+require_source_grounding: true
+
+required_sections:
+  - Summary
+  - Topics Discussed
+  - Open Questions
+
+# Advice-giving language is out of scope for a synthetic summarizer (FAIL).
+banned_phrases:
+  - we recommend you invest
+  - guaranteed return
+  - this is tax advice
+
+unsupported_certainty_terms:
+  - definitely
+  - certainly
+  - guaranteed

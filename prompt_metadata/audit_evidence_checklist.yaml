@@ -1,0 +1,29 @@
+# Spec for the audit_evidence_checklist prompt.
+prompt_id: audit_evidence_checklist
+title: Audit Evidence Checklist (synthetic)
+description: >
+  Reformats a synthetic list of provided evidence items into a structured
+  checklist. Demonstrates the overconfident-certainty (WARNING) path: the v1
+  output keeps all required sections but uses conclusive wording it shouldn't.
+
+compliance_sensitive: false
+require_source_grounding: true
+
+required_sections:
+  - Checklist Scope
+  - Evidence Items
+  - Completion Status
+  - Reviewer Notes
+
+# Hard conclusions the tool must never assert on its own (FAIL).
+banned_phrases:
+  - passed the audit
+  - no further review needed
+  - audit complete
+
+# Overconfident wording that should be softened or routed to a reviewer (WARNING).
+unsupported_certainty_terms:
+  - no issues found
+  - completely verified
+  - fully compliant
+  - definitely
